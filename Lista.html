@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>  <style>
+        ul li {
+            color: blue;
+        }
+        body{
+            border: 1px solid black; 
+                padding: 10px; 
+        }
+    </style></head>
+    <body>
+<H1>NOTES</H1>
+<ul id="wordList"></ul>
+    <input type="text" id="wordInput">
+    <P></P>
+    <button onclick="addWord()">Save</button>
+
+
+    <script>
+        function addWord() {
+            const word = document.getElementById("wordInput").value;
+            const li = document.createElement("li");
+            li.textContent = word;
+            document.getElementById("wordList").appendChild(li);
+
+            document.getElementById("wordInput").value = "";
+        }
+    </script>
+</body>
+</html>
