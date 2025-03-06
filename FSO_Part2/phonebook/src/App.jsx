@@ -35,15 +35,24 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Filter filter={filter} handleFilterChange={(e) => setFilter(e.target.value)} />
+      <Filter filter={filter} handleFilterChange={(e) => {
+        console.log('Aktualny filtr:', e.target.value)
+        setFilter(e.target.value)
+      }} />
 
       <h3>add a new</h3>
       <PersonForm
         addPerson={addPerson}
         newName={newName}
-        handleNameChange={(e) => setNewName(e.target.value)}
+        handleNameChange={(e) => {
+          console.log('Wpisana nazwa:', e.target.value) 
+          setNewName(e.target.value)
+        }}
         newNumber={newNumber}
-        handleNumberChange={(e) => setNewNumber(e.target.value)}
+        handleNumberChange={(e) => {
+          console.log('Wpisany numer:', e.target.value) 
+          setNewNumber(e.target.value)
+        }}
       />
 
       <h3>Numbers</h3>
