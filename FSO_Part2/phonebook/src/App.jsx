@@ -34,15 +34,33 @@ const App = () => {
     }
 
     const newPerson = {
-      id: persons.length + 1,
+      id: (persons.length + 1).toString(),
       name: newName,
       number: newNumber,
     }
 
-    setPersons(persons.concat(newPerson))
-    setNewName('')
-    setNewNumber('')
+    axios   
+    .post('http://localhost:3001/persons', newPerson)  
+      .then(response => {    
+         console.log(response) 
+         setPersons(persons.concat(newPerson))
+         setNewName('')
+         setNewNumber('') 
+       })
   }
+
+  const deletePerson = (id) => {
+    const personToDelete = persons.find(person => person.id === id)
+    const isConfirmed = window.confirm(`Delete ${personToDelete.name}?` )
+    if (isConfirmed) {
+      axios
+        .delete(`http://localhost:3001/persons/${id}`)
+        .then(() => {
+          setPersons(persons.filter(person => person.id !== id))
+        })
+    }
+  }
+  
 
   return (
     <div>
@@ -68,7 +86,7 @@ const App = () => {
       />
 
       <h3>Numbers</h3>
-      <Persons persons={persons} filter={filter} />
+      <Persons persons={persons} filter={filter} deletePerson={deletePerson} />
     </div>
   )
 }
