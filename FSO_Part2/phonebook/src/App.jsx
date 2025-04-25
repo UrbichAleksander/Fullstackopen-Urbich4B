@@ -40,12 +40,15 @@ const App = () => {
       return
     }
 
+
     const newPerson = {
       id: (persons.length + 1).toString(),
       name: newName,
       number: newNumber,
     }
 
+
+    
     axios.post('http://localhost:3001/persons', newPerson)
       .then(response => {
         setPersons(persons.concat(response.data))
