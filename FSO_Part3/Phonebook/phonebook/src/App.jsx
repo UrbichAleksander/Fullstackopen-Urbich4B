@@ -25,7 +25,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/api/persons')
+      .get('/api/persons')
       .then(response => {
         setPersons(response.data)
       })
@@ -49,7 +49,7 @@ const App = () => {
 
 
     
-    axios.post('http://localhost:3001/api/persons', newPerson)
+    axios.post('/api/persons', newPerson)
       .then(response => {
         setPersons(persons.concat(response.data))
         setNewName('')
@@ -62,7 +62,7 @@ const App = () => {
   const deletePerson = (id) => {
     const personToDelete = persons.find(person => person.id === id)
     if (window.confirm(`Delete ${personToDelete.name}?`)) {
-      axios.delete(`http://localhost:3001/api/persons/${id}`)
+      axios.delete(`/api/persons/${id}`)
         .then(() => {
           setPersons(persons.filter(person => person.id !== id))
         })
